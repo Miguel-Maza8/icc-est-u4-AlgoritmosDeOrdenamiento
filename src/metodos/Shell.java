@@ -2,7 +2,9 @@ package metodos;
 
 public class Shell {
      public static void ordenar (int[] arreglo,boolean asc) {
-        
+        int totalComparaciones = 0;
+        int totalIteraciones = 0;
+        int totalCambios = 0;
         
         int i ;
         int j ;
@@ -13,13 +15,14 @@ public class Shell {
             
         
             for (i = gap; i < arreglo.length; i++) {
-                
+                totalIteraciones++;
                 j = i ;
                 int aux = arreglo[i];
                 boolean cambio= false;
-                
+                totalComparaciones++;
                    System.out.print("I" + movimiento + "  ");
                 while (j >= gap && ordenar( arreglo[j - gap],aux,asc)) {
+                    totalCambios++;
                     arreglo[j]= arreglo[j-gap];
                     j -= gap;
                     cambio=true;
@@ -31,7 +34,7 @@ public class Shell {
 
                 }
                 int numeros;
-                if (j>= gap) {
+                if (j>= gap) { totalComparaciones++;
                     numeros = j - gap;
                     
                 }else{
@@ -62,6 +65,10 @@ public class Shell {
        } 
        System.out.println("\n Arreglo Ordenado");     
        imprimir(arreglo); 
+       System.out.println();
+        System.out.println("comparaciones: " + totalComparaciones);
+        System.out.println("cambios: " + totalCambios);
+        System.out.println("iteraciones: " + totalIteraciones);
     }
 
     public static void imprimir (int arreglo[]) {
@@ -77,9 +84,9 @@ public class Shell {
      }
      public static boolean ordenar(int numeros, int b , boolean asc) {
         if (asc) {
-            return numeros<b; //ascendente
+            return numeros<b; //descendente
         }else{
-            return numeros> b; // descendente
+            return numeros> b; // ascendente
         }
 
         

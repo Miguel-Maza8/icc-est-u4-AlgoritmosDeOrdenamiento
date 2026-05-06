@@ -29,20 +29,46 @@ public class App {
                         System.out.println("El numero esta fuera de rango");
                     
                     } else if (opcion == 1) {
-                        System.out.println("Inserccion ascendente: (true o false):");
-                        boolean asc1 = entrada.nextBoolean();
+                        boolean asc1;
+                        while (true) {
+                              System.out.println("Inserción ascendente: ( true o false):");
+     
+                              if (entrada.hasNextBoolean()) {
+                              asc1 = entrada.nextBoolean(); 
+                              break; 
+                             } else {
+                                    System.out.println("Error, valor no válid intentar de nuevo.");
+                                    entrada.next(); 
+                              }
+                            } 
+                        
+                        
                         if ( asc1 == true) {
                           System.out.println("Ordenamiento ascendente:");
-                          Insert.ordenar(arreglo, asc1);  
+                          Insert.ordenar(arreglo, asc1);
+                          
+
                              
                         }else {
                           System.out.println("Ordenamiento descendente:");
                           Insert.ordenar(arreglo, asc1);  
                           
                         }
+                    
                     } else if (opcion == 2) {
-                        System.out.println("Shell ascendente: (true o false):");
-                        boolean asc = entrada.nextBoolean();
+                        boolean asc;
+                        while (true) {
+                              System.out.println("Inserción ascendente: ( true o false):");
+     
+                              if (entrada.hasNextBoolean()) {
+                              asc = entrada.nextBoolean(); 
+                              break; 
+                             } else {
+                                    System.out.println("Error, valor no válid intentar de nuevo.");
+                                    entrada.next(); 
+                              }
+                            } 
+                        
                         if (asc == true) {
                             System.out.println("Ordenamiento ascendente:");
                             Shell.ordenar(arreglo, asc);  
