@@ -1,51 +1,67 @@
 package metodos;
 
 public class Shell {
-     public static void ordenar (int[] arreglo) {
+     public static void ordenar (int[] arreglo,boolean asc) {
+        
         
         int i ;
         int j ;
         int gap = arreglo.length / 2;
-        boolean asc ;
+        int movimiento = 1;
+         
         while (gap > 0) {
+            
         
             for (i = gap; i < arreglo.length; i++) {
-                j = i - gap;
-                int aux = arreglo[i];
-                asc = false;
-                while ( !asc  && j>=0 && aux < arreglo[j]) {
-                      System.out.print("I1:   ");
-                      imprimir(arreglo);
-                      System.out.print( "                        \t Gap: " + gap);
-                    
-                                        
                 
-                                         
-                    
-                    arreglo[j + gap] = arreglo[j];
-                    
-                    if (j >= gap) {
-                        j -= gap;
-                    } else {
-                        asc = true;
-                    System.out.println();
-                    }
-                    if (asc ) {
-                        arreglo[j] = aux;
-                    
-                    } else {
-                        arreglo[j + gap] = aux;
-                    
-                    }
-                    System.out.println("insertando: " + aux);
-                    imprimir(arreglo);
-
-                    
+                j = i ;
+                int aux = arreglo[i];
+                boolean cambio= false;
+                
+                   System.out.print("I" + movimiento + "  ");
+                while (j >= gap && ordenar( arreglo[j - gap],aux,asc)) {
+                    arreglo[j]= arreglo[j-gap];
+                    j -= gap;
+                    cambio=true;
                 }
-     
+                arreglo[j]= aux;
+                System.out.print("I" + movimiento );
+                for (int n : arreglo) {
+                    System.out.print(n + " ");
+
+                }
+                int numeros;
+                if (j>= gap) {
+                    numeros = j - gap;
+                    
+                }else{
+                    numeros= -1;
+                }
+                String cambionumero;
+                
+                if (cambio) {
+                    cambionumero ="si";
+                }else{
+                    cambionumero="no";
+                }
+                
+                System.out.print("  Gap: "+ gap  );
+                System.out.print("  a= "+ numeros  );
+                if (numeros !=-1) {
+                    System.out.print("  [a]="+ arreglo[numeros]);
+                }else{
+                    System.out.print("  [a]=-");
+                }
+                System.out.print("  b="+ j);
+                System.out.print("  [b]="+ arreglo[j]);
+                System.err.println("   cambio= "+ cambionumero);
+
+                movimiento++;
              }   
              gap /= 2;    
-       }       
+       } 
+       System.out.println("\n Arreglo Ordenado");     
+       imprimir(arreglo); 
     }
 
     public static void imprimir (int arreglo[]) {
@@ -58,6 +74,15 @@ public class Shell {
         
         
         
-    }
+     }
+     public static boolean ordenar(int numeros, int b , boolean asc) {
+        if (asc) {
+            return numeros<b; //ascendente
+        }else{
+            return numeros> b; // descendente
+        }
+
+        
+     }
 
 }
